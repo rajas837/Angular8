@@ -1,0 +1,30 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Enter Input
+    </div>
+    <div class="panel-body">
+        <form #form="ngForm" (submit)="formatDate()">
+            <div class="form-group">
+                <label for="type" class="control-label">
+                    Select Format : 
+                </label>
+                <select (change)="onSelect($event)">
+                    <option *ngFor="let type of types" value= {{type.format}} name="type">
+                        {{type.format}}
+                    </option>
+                </select>
+            </div>
+        </form>
+        <div *ngIf="selectedFormat != 'from now'">
+            Formated Date : {{ now | customDatePipe: selectedFormat}}
+        </div>
+        <div *ngIf="selectedFormat == 'from now'">
+                Formated Date : {{ now | customDatePipe: selectedFormat: 1}}<br>
+                Formated Date : {{ now | customDatePipe: selectedFormat: 2}}<br>
+                Formated Date : {{ now | customDatePipe: selectedFormat: 3}}<br>
+                Formated Date : {{ now | customDatePipe: selectedFormat: 4}}<br>
+                Formated Date : {{ now | customDatePipe: selectedFormat: 5}}
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>

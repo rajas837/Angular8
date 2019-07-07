@@ -1,0 +1,11 @@
+<h3 i18n="@@myName">
+  Testing details of internationalization
+</h3>
+
+<ng-container *ngFor="let language of languageList">
+  <a href="/{{language.code}}/"><button class="button">{{language.label}}</button></a>
+</ng-container>
+
+<h5 i18n="@@myDate"> 
+  Date : {{date}} 
+</h5>
