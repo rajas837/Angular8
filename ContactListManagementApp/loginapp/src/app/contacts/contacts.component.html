@@ -1,0 +1,46 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{mainHeading}}
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-2">
+                {{title}}
+            </div>
+        </div>
+        <div class="table-responsive" *ngIf="contacts && contacts.length; else noData">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Number</th>
+                        <th>Address</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let contact of contacts">
+                        <td>{{contact.type}}</td>
+                        <td>{{contact.number}}</td>
+                        <td>{{contact.address}}</td>
+                        <td>
+                            <button class="btn btn-info">Edit</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" (click)="removeContact(contact.number)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <ng-template #noData>
+            <img src="../../assets/loading.gif" />
+        </ng-template>
+    </div>
+</div>
+
+
+<!--
+    [queryParams]="{name:prod.productName,img:prod.imageUrl,desc:prod.description}"
+-->
