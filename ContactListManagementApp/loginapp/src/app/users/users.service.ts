@@ -19,4 +19,8 @@ export class UsersService {
         let URL = this.baseURL+ 'deleteuser/' +id;
         return this.http.delete(URL);
     }
+    updateUser(id, data) {
+        let URL = this.baseURL + 'user/' + id;
+        return this.http.put(URL, data);
+      }
 }

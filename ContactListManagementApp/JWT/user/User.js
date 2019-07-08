@@ -4,7 +4,8 @@ var UserSchema = new mongoose.Schema({
   email: String,
   password: String,
   role: String,
-  contacts: []
+  contacts: [],
+  updated_date: { type: Date, default: Date.now },
 });
 mongoose.model('User', UserSchema);
 

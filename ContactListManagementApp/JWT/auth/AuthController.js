@@ -83,6 +83,21 @@ var User = require('../user/User');
       res.send(data)
     })
   })
+
+  router.put('/user/:id', function(req, res, next) {
+    User.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+      if (err) return next(err);
+      res.send(post);
+    });
+  });
+
+  // router.delete('/:id', function(req, res, next) {
+  //   User.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+  //     if (err) return next(err);
+  //     res.json(post);
+  //   });
+  // });
+
   router.delete('/deleteuser/:id', (req,res) => {
     var uid = req.params.id.toString();
     User.deleteOne({"_id": uid}, function(err, results){
