@@ -8,8 +8,10 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'loginapp';
-
-  constructor(private router: Router) {}
+  isLogged;
+  constructor(private router: Router) {
+      this.isLogged = false;
+  }
 
   logoutUser(): void {
     localStorage.removeItem('TOKEN_NUMBER');

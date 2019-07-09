@@ -7,13 +7,18 @@ import { ProfileGaurdService } from './profile-guard.service';
 import { RegisterGaurdService } from './register-gaurd.service';
 import { UsersComponent } from './users/users.component';
 import { ContactsComponent } from './contacts/contacts.component';
-
+import { UserComponent } from './user/user.component';
+import { ContactComponent } from './contact/contact.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 const routes: Routes = [
   {path: 'register', canActivate: [RegisterGaurdService], component: RegisterFormComponent },
   {path: 'profile', canActivate: [ProfileGaurdService], component: ProfileComponent },
   {path: 'login', component: LoginFormComponent },
   {path: 'users', component: UsersComponent },
   {path: 'contacts', component: ContactsComponent},
+  { path: 'user/:_id', component: UserComponent },
+  { path: 'contact/:_id', component: ContactComponent },
+  { path: 'registerContact', component: ContactFormComponent },
   {path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 

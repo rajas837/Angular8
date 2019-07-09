@@ -1,0 +1,60 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Update Form
+    </div>
+    <div class="panel-body">
+        <form #form="ngForm" (submit)="UpdateForm(form)">
+            <div class="form-group" [class.has-error]="name.invalid">
+                <label for="name" class="control-label">
+                    Type
+                </label>
+                <input type="text" placeholder="name"
+                id="fname" name="name"
+                [(ngModel)]="contact.type"
+                class="form-control"
+                #name="ngModel"
+                required/>
+                <div class="alert alert-danger" *ngIf="name.invalid">
+                    Type is required
+                </div>
+            </div>
+            <div class="form-group" [class.has-error]="number.invalid">
+                <label for="name" class="control-label">
+                    Number
+                </label>
+                <input type="text" placeholder="number"
+                id="num" name="number"
+                [(ngModel)]="contact.number"
+                class="form-control"
+                #number="ngModel"
+                required/>
+                <div class="alert alert-danger" *ngIf="number.invalid">
+                    Number is required
+                </div>
+            </div>
+            <div class="form-group" [class.has-error]="addr.invalid">
+                <label for="name" class="control-label">
+                    Address
+                </label>
+                <input type="text" placeholder="address"
+                id="num" name="addr"
+                [(ngModel)]="contact.address"
+                class="form-control"
+                #addr="ngModel"
+                required/>
+                <div class="alert alert-danger" *ngIf="addr.invalid">
+                    Address is required
+                </div>
+            </div>
+            <button class="btn btn-success"
+                type="submit"
+                [disabled]="hasCodeLangError">
+                Update
+            </button>
+            <button class="btn btn-info" style="margin-left:10px"
+                (click)="goToContact()">
+                Go to ContactsList
+            </button>
+        </form>
+    </div>
+</div>

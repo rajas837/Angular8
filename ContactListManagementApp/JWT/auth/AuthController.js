@@ -31,19 +31,39 @@ var User = require('../user/User');
       res.status(200).send({ auth: true, token: token });
     }); 
   });
-  // router.put({
-  //   name : req.body.name,
-  //   email : req.
-  // })
-
-  // router.get('/user/:id', function(req, res){
-  //   var uid = req.params.id.toString();
-  //   User.findOne({ '_id': uid },function(err, user){
-  //     if(err)throw err;
-  //     res.send();
-  //     console.log(user);
-  //   })
-  // })
+  router.post('/registerContact', function(req, res) {
+    User.create({
+      type : req.body.type,
+      number : req.body.number,
+      address : req.body.address
+    },
+    function (err, user) {
+      if (err) return res.status(500).send("There was a problem registering the contact.")
+      // create a token
+      var token = jwt.sign({ id: user._id }, config.secret, {
+        expiresIn: 86400 // expires in 24 hours
+      });
+      res.setHeader('Access-Control-Allow-Origin','*')
+      res.setHeader('Access-Control-Allow-Headers','Origin, X-Requested-With,Content-Type,Accept')
+      res.status(200).send({ auth: true, token: token });
+    }); 
+  });
+  router.get('/user/:id', function(req, res){
+    var uid = req.params.id.toString();
+    User.findOne({ '_id': uid },function(err, user){
+      if(err)throw err;
+      res.send(user);
+      //console.log(user);
+    })
+  })
+  router.get('/contact/:id', function(req, res){
+    var uid = req.params.id.toString();
+    User.findOne({ '_id': uid },function(err, user){
+      if(err)throw err;
+      res.send(user);
+      //console.log(user);
+    })
+  })
   router.get('/userinfo', function(req, res) {
     var token = req.headers['x-access-token'];
     if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
@@ -84,19 +104,29 @@ var User = require('../user/User');
     })
   })
 
+  // router.put('/user/:id', function(req, res, next) {
+  //   var uid = req.params.id.toString();
+  //   User.findByIdAndUpdate(uid, req.body, function (err, post) {
+  //     if (err) return next(err);
+  //     res.send(post);
+  //   });
+  // });
   router.put('/user/:id', function(req, res, next) {
-    User.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+    var uid = req.params.id.toString();
+    var newValue = { $set: {name: req.body.name, email: req.body.email}}
+    User.updateOne({"_id": uid, newValue}, function (err, post) {
       if (err) return next(err);
       res.send(post);
     });
   });
-
-  // router.delete('/:id', function(req, res, next) {
-  //   User.findByIdAndRemove(req.params.id, req.body, function (err, post) {
-  //     if (err) return next(err);
-  //     res.json(post);
-  //   });
-  // });
+  router.put('/contact/:id', function(req, res, next) {
+    var uid = req.params.id.toString();
+    var newContact = { $set: {name: req.body.name, email: req.body.email}}
+    User.updateOne({"_id": uid, newContact}, function (err, post) {
+      if (err) return next(err);
+      res.send(post);
+    });
+  });
 
   router.delete('/deleteuser/:id', (req,res) => {
     var uid = req.params.id.toString();
@@ -108,12 +138,11 @@ var User = require('../user/User');
   })
   router.delete('/deletecontact/:id', (req,res) => {
     var uid = req.params.id.toString();
-    User.findOne({ '_id': uid});
-    // User.deleteOne({"_id": uid}, function(err, results){
-    //   if(err)throw err;
-    //   res.send({message : 'User deleted successfully'});
-    //   console.log(results.result);
-    // })
+    var oldContact = { $pull: {name: req.body.name, email: req.body.email}}
+    User.updateOne({"_id": uid, oldContact}, function (err, post) {
+      if (err) return next(err);
+      res.send(post);
+    });
   })
 
 

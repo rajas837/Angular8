@@ -14,6 +14,12 @@ import { UsersComponent } from './users/users.component';
 import { UsersService } from './users/users.service';
 import { ContactsComponent } from './contacts/contacts.component';
 import { ContactsService } from './contacts/contacts.service';
+import { UserComponent } from './user/user.component';
+import { UserService } from './user/user.service';
+import { ContactComponent } from './contact/contact.component';
+import { ContactService } from './contact/contact.service';
+import { ContactFormComponent } from './contact-form/contact-form.component';
+import { ContactFormService } from './contact-form/contact-form.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +28,10 @@ import { ContactsService } from './contacts/contacts.service';
     LoginFormComponent,
     ProfileComponent,
     UsersComponent,
-    ContactsComponent
+    ContactsComponent,
+    UserComponent,
+    ContactComponent,
+    ContactFormComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +43,10 @@ import { ContactsService } from './contacts/contacts.service';
     LoginService,
     RegisterService,
     UsersService,
-    ContactsService
+    ContactsService,
+    UserService,
+    ContactService,
+    ContactFormService
   ],
   bootstrap: [AppComponent]
 })

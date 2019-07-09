@@ -25,7 +25,7 @@
                         <td>{{contact.number}}</td>
                         <td>{{contact.address}}</td>
                         <td>
-                            <button class="btn btn-info">Edit</button>
+                            <button class="btn btn-info" (click)="editContact(contact.number)">Edit</button>
                         </td>
                         <td>
                             <button class="btn btn-danger" (click)="removeContact(contact.number)">Delete</button>
@@ -33,6 +33,11 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div>
+            <button type="button" class="btn btn-info" (click)="addContact()">
+                Add New Contact
+            </button> 
         </div>
         <ng-template #noData>
             <img src="../../assets/loading.gif" />

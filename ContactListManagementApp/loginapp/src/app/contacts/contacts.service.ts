@@ -21,7 +21,11 @@ export class ContactsService {
         return this.http.get(URL, {headers: {'x-access-token': token}});
     }
     deleteContact(number) {
-        let URL = this.baseURL+ 'deletecontact/' +number;
+        let URL = this.baseURL+ 'deletecontact/' + number;
         return this.http.delete(URL);
     }
+    updateUser(id, data) {
+        let URL = this.baseURL + 'contact/' + id;
+        return this.http.put(URL, data);
+      }
 }

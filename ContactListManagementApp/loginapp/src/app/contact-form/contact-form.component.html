@@ -1,0 +1,60 @@
+<div class="panel panel-primary">
+        <div class="panel-heading">
+            Register Form
+        </div>
+        <div class="panel-body">
+            <form #form="ngForm" (submit)="RegsiterForm(form)">
+                <div class="form-group" [class.has-error]="type.invalid">
+                    <label for="type" class="control-label">
+                        Type
+                    </label>
+                    <input type="text" placeholder="type"
+                    id="fname" name="type"
+                    [(ngModel)]="mymodel.type"
+                    class="form-control"
+                    #type="ngModel"
+                    required/>
+                    <div class="alert alert-danger" *ngIf="type.invalid">
+                        Type is required
+                    </div>
+                </div>
+                <div class="form-group" [class.has-error]="number.invalid">
+                    <label for="number" class="control-label">
+                        Number
+                    </label>
+                    <input type="text" placeholder="number"
+                    id="fnumber" name="number"
+                    [(ngModel)]="mymodel.number"
+                    class="form-control"
+                    #number="ngModel"
+                    required/>
+                    <div class="alert alert-danger" *ngIf="number.invalid">
+                        Number is required
+                    </div>
+                </div>
+                <div class="form-group" [class.has-error]="addr.invalid">
+                    <label for="addr" class="control-label">
+                        Address
+                    </label>
+                    <input type="text" placeholder="address"
+                    id="faddr" name="addr"
+                    [(ngModel)]="mymodel.address"
+                    class="form-control"
+                    #addr="ngModel"
+                    required/>
+                    <div class="alert alert-danger" *ngIf="addr.invalid">
+                        Address is required
+                    </div>
+                </div>
+                <button class="btn btn-success"
+                    type="submit"
+                    [disabled]="hasCodeLangError">
+                    Submit
+                </button>
+                <button class="btn btn-info" style="margin-left:10px"
+                    (click)="goToUser()">
+                    Go to ContactList
+                </button>
+            </form>
+        </div>
+    </div>

@@ -36,7 +36,7 @@
                         <td>{{user.email}}</td> 
                         <td>{{user.role}}</td>
                         <td>
-                            <button type="button" class="btn btn-info">Edit</button>
+                            <button type="button" class="btn btn-info" (click)="editUser(user._id)">Edit</button>
                         </td>
                         <td>
                             <button type="button" class="btn btn-danger" (click)="removeUser(user._id)">Delete</button>
